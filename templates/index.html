@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS Imports -->
-    <link rel="stylesheet" href="./vendor/css/pureCSS.css">
-    <link rel="stylesheet" href="./css/leftnav.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/modal.css">
-    <link rel="stylesheet" href="./vendor/css/Chart.css">
+    <link rel="stylesheet" href="{{ url_for('public', path='vendor/css/pureCSS.css') }}">
+    <link rel="stylesheet" href="{{ url_for('public', path='css/leftnav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('public', path='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('public', path='css/modal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('public', path='vendor/css/Chart.css') }}">
 
-    <title> {% block title %} {% endblock %}</title>
+    <title> {% block title %} {{title}} {% endblock %}</title>
   </head>
   <body>
       <!--SIDEBAR START-->
       <div id="nav" class="pure-u">
           <div class="menu-holder">
-            <p class="nav-menu-button">Simple Dashboard</p>
+            <p class="nav-menu-button">{{ title }}</p>
           </div>
 
             <div class="nav-inner">
@@ -57,7 +57,7 @@
     <!-- END SIDEBAR -->
     <!-- MAIN BODY -->
         <div class="title-bar">
-            <p>Server Time: 17:50 Fri December 25th, 2020</p>
+            <p>Server Date: {{ today_time }} </p>
         </div>
 
         <div class="content">
@@ -105,9 +105,9 @@
     <!--END MODAL-->
 
     <!-- SCRIPT Imports -->
-    <script src="./vendor/js/jquery-3.5.1.js"></script>
-    <script src="./vendor/js/Chart.js"></script>
-    <script src="./js/modal.js"></script>
+    <script src="{{ url_for('public', path='vendor/js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ url_for('public', path='vendor/js/Chart.js') }}"></script>
+    <script src="{{ url_for('public', path='js/modal.js') }}"></script>
 
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
