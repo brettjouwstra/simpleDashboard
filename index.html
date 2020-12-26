@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="./vendor/css/pureCSS.css">
+    <link rel="stylesheet" href="./css/leftnav.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./vendor/css/Chart.css">
+
+    <title> {% block title %} {% endblock %}</title>
+  </head>
+  <body>
+      <!--SIDEBAR START-->
+      <div id="nav" class="pure-u">
+          <div class="menu-holder">
+            <p class="nav-menu-button">Simple Dashboard</p>
+          </div>
+
+            <div class="nav-inner">
+                <div class="pure-menu">
+                    <ul class="pure-menu-list">
+                        <div class="menu-item-bg">
+                            <li class="pure-menu-item"><a href="/" class="pure-menu-link">Charts</a></li>
+                        </div>
+
+                        <div class="menu-item-bg">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Reader</a></li>
+                        </div>
+
+                        <div class="menu-item-bg">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Upload</a></li>
+                        </div>
+
+                        <li class="pure-menu-heading">Admin</li>
+
+                        <div class="menu-item-bg">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-personal"></span>Manage</a></li>
+                        </div>
+
+                        <div class="menu-item-bg">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="email-label-work"></span>Storage</a></li>
+                        </div>
+                    </ul>
+
+                    <div class="sidebar-footer">
+                        <small>Document Management</small> <br>
+                        <small>2020 by Brett Jouwstra</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- END SIDEBAR -->
+    <!-- MAIN BODY -->
+        <div class="title-bar">
+            <p>Server Time: 17:50 Fri December 25th, 2020</p>
+        </div>
+
+        <div class="content">
+
+            <div class="box" id="box-1">
+                <img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/subway/document-3.svg">
+                <h4 class="box-title">Documents in Repository</h4>
+                <h4 class="box-data">7</h4>
+            </div>
+
+            <div class="box" id="box-2">
+                <img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/icons/material/clear-all.svg">
+                <h4 class="box-title">Document Categories</h4>
+                <h4 class="box-data">4</h4>
+            </div>
+
+            <div class="box" id="box-3">
+                <img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/icons/material/face.svg">
+                <h4 class="box-title">Site Owner</h4>
+                <h4 class="box-data">Brett Jouwstra</h4>
+            </div>
+        </div>
+        <div class="section">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="doc-list">
+            <h3>Documents</h3>
+            <ol>
+                <button class="modal-btn" value="Document #1" onclick="showModal(this.value)">
+                    <li><img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/icons/material/picture-as-pdf.svg"> Document #1</li>
+                </button>
+            </ol>
+        </div>
+    <!-- END BODY -->
+
+    <!-- MODAL -->
+    <div class="modal-bg">
+        <div class="modal">
+            <h2>Data Tilte</h2>
+            <p>Content here</p>
+            <span class="modal-close">X</span>
+        </div>
+    </div>
+    <!--END MODAL-->
+
+    <!-- SCRIPT Imports -->
+    <script src="./vendor/js/jquery-3.5.1.js"></script>
+    <script src="./vendor/js/Chart.js"></script>
+    <script src="./js/modal.js"></script>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Documents by Category',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,53 @@
+/* 
+Site Colors 
+{"Space Cadet":"2b2d42","Manatee":"8d99ae","Alice Blue":"edf2f4","Imperial Red":"ef233c","Amaranth Red":"d90429"}
+*/
+
+#nav {
+    width: 17vw;
+    height: 100vh;
+    background-color: #233d4d;
+}
+
+.menu-holder {
+text-align: center;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.nav-menu-button {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: 700;
+    text-emphasis: none;
+}
+
+.pure-menu-heading {
+    color: #FFFFFF;
+    font-size: large;
+    font-weight: 700;
+}
+
+.menu-item-bg {
+    background-color: #1d3557;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 5px;
+}
+
+.pure-menu-link {
+    color: white;
+}
+
+.pure-menu-link:hover {
+    color: black;
+    background-color: #fe7f2d;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 5px;
+    left: 40px;
+    color: white;
+    text-align: center;
+}
