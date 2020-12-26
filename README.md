@@ -8,7 +8,7 @@ All files for just the Dashboard can be found in the templates + public director
 
 # Simple Docs
 
-The application Simple Dashboard was created for is Simple Docs, an easy stress free document manager using MongoDB's GridFS as a storage location
+The application Simple Dashboard was created for is Simple Docs, an easy stress free document manager using MongoDB's [GridFS](https://docs.mongodb.com/manual/core/gridfs/) as a storage location and [FastAPI](https://fastapi.tiangolo.com/) to serve it. 
 
 Submitting a POST request to the `/-/create` endpoint like this:
 
