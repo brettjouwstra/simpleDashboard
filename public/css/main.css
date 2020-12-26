@@ -75,7 +75,7 @@ body {
 .doc-list {
     position: absolute;
     top: 200px;
-    left: 65vw;
+    left: 55vw;
     height: 550px;
     width: 500px;
     scroll-behavior: auto;

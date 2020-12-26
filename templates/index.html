@@ -65,13 +65,13 @@
             <div class="box" id="box-1">
                 <img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/subway/document-3.svg">
                 <h4 class="box-title">Documents in Repository</h4>
-                <h4 class="box-data">7</h4>
+                <h4 class="box-data">{{ count_files }}</h4>
             </div>
 
             <div class="box" id="box-2">
                 <img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/icons/material/clear-all.svg">
                 <h4 class="box-title">Document Categories</h4>
-                <h4 class="box-data">4</h4>
+                <h4 class="box-data">{{ doc_cat }}</h4>
             </div>
 
             <div class="box" id="box-3">
@@ -86,10 +86,8 @@
 
         <div class="doc-list">
             <h3>Documents</h3>
-            <ol>
-                <button class="modal-btn" value="Document #1" onclick="showModal(this.value)">
-                    <li><img src="https://storage.googleapis.com/template-design/icons/svg_icons_big-list/icons/material/picture-as-pdf.svg"> Document #1</li>
-                </button>
+            <ol id="modal-holder">
+                <!-- Programitcally filled using req.js -->
             </ol>
         </div>
     <!-- END BODY -->
@@ -97,8 +95,7 @@
     <!-- MODAL -->
     <div class="modal-bg">
         <div class="modal">
-            <h2>Data Tilte</h2>
-            <p>Content here</p>
+            <embed id="modal-content" height="100%" width="100%" src="">
             <span class="modal-close">X</span>
         </div>
     </div>
@@ -108,16 +105,26 @@
     <script src="{{ url_for('public', path='vendor/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ url_for('public', path='vendor/js/Chart.js') }}"></script>
     <script src="{{ url_for('public', path='js/modal.js') }}"></script>
+    <script src="{{ url_for('public', path='js/req.js') }}"></script>
 
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
+        let label_list = {{ list_cats|safe }}; //The safe is critical
+        let counter = {{ actual_cnt|safe }};
+        let new_label = [];
+        let new_cnt = [];
+        for (key in counter) {
+            new_label.push(key)
+            value = counter[key]
+            new_cnt.push(value)
+        }
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: new_label,
                 datasets: [{
                     label: 'Documents by Category',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: new_cnt,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
