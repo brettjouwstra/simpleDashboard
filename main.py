@@ -1,6 +1,5 @@
-from fastapi import FastAPI, File, Form, UploadFile, Header
+from fastapi import FastAPI, File, Form, UploadFile, Header, Request, Response
 from fastapi.responses import HTMLResponse
-from fastapi import FastAPI, Request, Response
 from pydantic import BaseModel
 from typing import Optional
 from pymongo import MongoClient
@@ -11,7 +10,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from dotenv import load_dotenv
 import os, io
-from starlette.responses import StreamingResponse
+from starlette.responses import StreamingResponse, RedirectResponse
+from datetime import datetime
 
 # Local file imports
 from pyfiles.app_support import today_time
@@ -81,15 +81,15 @@ async def index(request: Request, id: int = None):
 # Data Routes /-/
 # Create new document
 @api.post("/-/create", tags=['create'])
-async def create( description: str = Form(...), sensitive: str = Form(...), files: UploadFile = File(...) ):
+async def create( request: Request, description: str = Form(...), sensitive: str = Form(...), category: str = Form(...), files: UploadFile = File(...) ):
     filename = files.filename
     the_file = files.file
     mime = files.content_type
     contents = files.file.read()
     grid_res = file_saver(filename, contents, mime)
-    collection.insert_one({ 'filename_original': filename, 'type': mime, 'referencename': grid_res, 'description': description, 'sensitive': sensitive })
-
-    return { 'okay': 200, 'mime': mime, 'gridfs': grid_res }
+    collection.insert_one({ 'filename_original': filename, 'type': mime, 'referencename': grid_res, 
+                    'description': description, 'sensitive': sensitive, 'category': category, 'timestamp': datetime.now() })
+    return RedirectResponse(url='/')
 
 # View One Document
 @api.get("/-/view/{name}", tags=['view'])

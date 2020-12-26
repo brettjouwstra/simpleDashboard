@@ -35,7 +35,7 @@ def file_finder(name):
     return response
 
 def all_files():
-    meta_all = collection.find()
+    meta_all = collection.find().sort('timestamp', -1)
     return dumps(meta_all)
 
 def count_files():

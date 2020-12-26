@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="menu-item-bg">
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Upload</a></li>
+                            <li class="pure-menu-item"><a id="trigger" href="#" class="pure-menu-link">Upload</a></li>
                         </div>
 
                         <li class="pure-menu-heading">Admin</li>
@@ -95,17 +95,53 @@
     <!-- MODAL -->
     <div class="modal-bg">
         <div class="modal">
-            <embed id="modal-content" height="100%" width="100%" src="">
+                <iframe id="modal-content" height="100%" width="100%" src=""></iframe>
             <span class="modal-close">X</span>
         </div>
     </div>
     <!--END MODAL-->
+
+    <!-- START SLIDER -->
+    <div id='slider'>
+        <form id="hiddenForm" class="pure-form pure-form-stacked" method="POST" enctype='multipart/form-data' action="/-/create">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="aligned-name">Description</label>
+                    <input type="text" id="aligned-name" name="description" placeholder="What is this doc..." />
+                </div>
+                <div class="pure-control-group">
+                    <label for="aligned-check">Sensitive</label>
+                    <input type="hidden" id="aligned-check" name="sensitive" value="false" />
+                    <input type="checkbox" id="aligned-check" name="sensitive" value="true" />
+                </div>
+                <div class="pure-control-group">
+                    <label for="aligned-email">Category</label>
+                    <input type="text" id="aligned-email" name="category" placeholder="Receipts, etc." />
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name='files' id="customFile">
+                </div>
+            </fieldset>
+            <button class="btn btn-cust" type="submit">Submit</button>
+        </form>
+    </div>
+    <!-- END SLIDER -->
 
     <!-- SCRIPT Imports -->
     <script src="{{ url_for('public', path='vendor/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ url_for('public', path='vendor/js/Chart.js') }}"></script>
     <script src="{{ url_for('public', path='js/modal.js') }}"></script>
     <script src="{{ url_for('public', path='js/req.js') }}"></script>
+    <script src="{{ url_for('public', path='vendor/js/jquery.slidereveal.js') }}"></script>
+    <script src="{{ url_for('public', path='js/filename.js') }}"></script>
+
+        <script>
+            $('#slider').slideReveal({
+                trigger: $("#trigger"),
+                overlay: false,
+                push: true,
+            });
+        </script>
 
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
