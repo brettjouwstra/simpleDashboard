@@ -13,3 +13,8 @@ To make adjustments simplely edit the CSS files named according to the elements 
 2. main.css - styles the main content area
 
 3. modal.css - styles the modal and the componets that interact with it (i.e. the buttons to open it, etc.)
+
+
+### Screenshot
+
+![screenshot](screenshot.png)
