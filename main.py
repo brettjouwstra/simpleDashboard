@@ -16,6 +16,7 @@ from datetime import datetime
 # Local file imports
 from pyfiles.app_support import today_time
 from pyfiles.doc_grid import file_finder, file_saver, all_files, count_files, doc_categories
+from pyfiles.admin import CustomAdmin
 
 load_dotenv()
 TITLE = os.environ['TITLE']
@@ -56,7 +57,7 @@ api.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 # Database
@@ -77,6 +78,10 @@ async def index(request: Request, id: int = None):
     return templates.TemplateResponse("index.html", {"request": request, 
         "id": id, 'title': TITLE, 'today_time': today_time(), 'count_files': count_files(), 'doc_cat': len(doc_categories()[0]),
         'list_cats': doc_categories()[0], 'actual_cnt': doc_categories()[1] })
+
+@api.get("/admin", tags=['admin'], response_class=HTMLResponse)
+async def admin(request: Request, id: int = None):
+    return templates.TemplateResponse( "manage.html", {"request": request, "id": id, "title": TITLE, "alldata": CustomAdmin().all_mapped() })
 
 # Data Routes /-/
 # Create new document
